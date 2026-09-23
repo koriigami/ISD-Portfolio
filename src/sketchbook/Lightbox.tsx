@@ -39,6 +39,10 @@ export function Lightbox({
   const [zoomed, setZoomed] = useState(false)
   const closeBtn = useRef<HTMLButtonElement>(null)
   const scroller = useRef<HTMLDivElement>(null)
+  // on touch screens the tap that opened us is followed by a late "click"
+  // landing on whatever is now under the finger; ignore it
+  const openedAt = useRef(performance.now())
+  const settled = () => performance.now() - openedAt.current > 450
   const v = all[i]
 
   const go = useCallback((d: number) => {
@@ -66,6 +70,7 @@ export function Lightbox({
 
   // when zooming in, start centred on the spot that was clicked
   const toggleZoom = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (!settled()) return
     const img = e.currentTarget
     const r = img.getBoundingClientRect()
     const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height
@@ -84,9 +89,9 @@ export function Lightbox({
 
   return createPortal(
     <div className="skb-lightbox" role="dialog" aria-modal="true" aria-label={v.caption ?? v.alt}
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      onClick={e => { if (e.target === e.currentTarget && settled()) onClose() }}>
       <div ref={scroller} className={`skb-lb-stage${zoomed ? ' zoomed' : ''}`}
-        onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+        onClick={e => { if (e.target === e.currentTarget && settled()) onClose() }}>
         <img key={v.src} src={v.src} alt={v.alt} className="skb-lb-img" draggable={false} onClick={toggleZoom} />
       </div>
       <div className="skb-lb-bar">

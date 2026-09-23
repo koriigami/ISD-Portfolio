@@ -12,7 +12,7 @@ export function grain(texture: PaperTexture): string {
   const cfg = {
     'cold-press': { f: 0.9, o: 4, a: 0.16, s: 0.55 },
     smooth: { f: 1.4, o: 2, a: 0.07, s: 0.4 },
-    kraft: { f: 0.55, o: 5, a: 0.26, s: 0.7 },
+    kraft: { f: 0.7, o: 4, a: 0.16, s: 0.6 },
   }[texture]
   return svg(`<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220">
     <filter id="n" x="0" y="0">

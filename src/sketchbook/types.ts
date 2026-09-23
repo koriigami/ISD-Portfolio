@@ -48,6 +48,9 @@ export type BookOptions = {
   paperTexture?: PaperTexture
   /** When true, whites in your images take the paper colour (looks printed). */
   printOnPaper?: boolean
+  /** 'contain' (default) shows every image whole, with paper around it if its
+   *  shape differs from the page. 'cover' fills the page and trims the rest. */
+  imageFit?: 'contain' | 'cover'
   /** The book starts closed on this cover. `false` starts open. */
   cover?: CoverOptions | false
   /** Ribbon bookmark colour, or false for none. */

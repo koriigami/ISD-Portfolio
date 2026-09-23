@@ -18,6 +18,7 @@ export const defaults: ResolvedOptions = {
   paper: '#f2ede3',
   paperTexture: 'cold-press',
   printOnPaper: true,
+  imageFit: 'contain',
   cover: false,
   ribbon: false,
   intro: true,
@@ -76,7 +77,7 @@ export class SketchbookEngine {
   private projects: SketchbookProject[]
   private cb: EngineCallbacks
   private p: Parts
-  private g: Geometry = { page: 0, height: 0 }
+  private g: Geometry = { page: 0, height: 0, fit: 'contain' }
   private rim = 0
   private pos: number
   private turn: Turn | null = null
@@ -167,7 +168,7 @@ export class SketchbookEngine {
     w = Math.max(200, Math.floor(w / 2) * 2)
     const h = Math.round(w / aspect)
     if (w / 2 === this.g.page && h === this.g.height) return
-    this.g = { page: w / 2, height: h }
+    this.g = { page: w / 2, height: h, fit: this.o.imageFit }
     this.rim = rimFor(w / 2, !!this.o.cover)
     const s = this.p.root.style
     s.setProperty('--skb-w', `${w}px`)

@@ -77,8 +77,8 @@ export class Loupe {
   rest() {
     const { w, h } = this.host.size()
     const r = this.radius()
-    this.x = w - r * 0.55
-    this.y = h - r * 0.45
+    this.x = w - r * 1.05
+    this.y = h - r * 0.5
     this.place()
   }
 
