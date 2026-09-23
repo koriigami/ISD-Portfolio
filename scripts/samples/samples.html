@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sample spreads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Kalam:wght@300;400&display=block">
+<style>
+  :root{
+    --ink:#2a2622; --soft:rgba(42,38,34,.62); --faint:rgba(42,38,34,.32);
+    --terra:#b86543; --sage:#8b9a7a; --ochre:#c9a24b; --indigo:#40506a; --clay:#d9b8a0;
+    --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --hand:'Kalam',cursive;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#888;font-family:var(--sans);color:var(--ink)}
+  .spread{position:relative;width:1200px;height:849px;background:#fdfcf8;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;margin:0 0 20px}
+  .page{position:relative;padding:58px 60px}
+  .page.half{width:600px;height:849px}
+  .spread.single{width:600px;grid-template-columns:1fr}
+  .kicker{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin:0}
+  .folio{position:absolute;bottom:28px;font-size:9px;letter-spacing:.2em;color:var(--faint)}
+  .page:nth-child(odd) .folio{left:60px} .page:nth-child(even) .folio{right:60px}
+  .sample{position:absolute;right:26px;top:22px;font:600 8px/1 var(--sans);letter-spacing:.3em;color:rgba(184,101,67,.75);border:1px solid rgba(184,101,67,.45);padding:5px 7px 4px;transform:rotate(2deg)}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.01em}
+  p{margin:0}
+  .body{font-size:11.5px;line-height:1.7;color:var(--soft);max-width:34em}
+  .hand{font-family:var(--hand);font-weight:300;color:#5a4a3a}
+  .meta{display:flex;gap:26px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  .meta b{display:block;font-weight:500;color:var(--ink);letter-spacing:.06em;text-transform:none;font-size:12px;margin-top:5px}
+  svg{display:block;overflow:visible}
+  .line{fill:none;stroke:var(--ink);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+  .thin{stroke-width:.6}
+  .thick{stroke-width:2.2}
+  .wash{mix-blend-mode:multiply}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="hand" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/>
+    </filter>
+    <filter id="wc" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="3" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="26" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.6" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="2" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.25" result="ga"/>
+      <feComposite in="b" in2="ga" operator="in"/>
+    </filter>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2a2622" stroke-width=".6"/>
+    </pattern>
+    <pattern id="hatch-dense" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="3.2" stroke="#2a2622" stroke-width=".55"/>
+    </pattern>
+    <pattern id="cane" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#d8bd8a"/>
+      <path d="M0 5h10M5 0v10" stroke="#9c7a45" stroke-width="1.4"/>
+      <circle cx="5" cy="5" r="2.2" fill="none" stroke="#b08c55" stroke-width=".8"/>
+      <path d="M0 0l10 10M10 0 0 10" stroke="#e6cf9f" stroke-width=".6"/>
+    </pattern>
+    <pattern id="teak" width="140" height="20" patternUnits="userSpaceOnUse">
+      <rect width="140" height="20" fill="#8a5a36"/>
+      <path d="M0 4 C40 2 70 7 140 4M0 11 C50 13 90 8 140 12M0 17 C30 16 90 19 140 16" stroke="#6d4428" stroke-width="1.1" fill="none"/>
+      <path d="M0 8 C60 9 80 6 140 8" stroke="#a06d45" stroke-width=".8" fill="none"/>
+    </pattern>
+    <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M12 0H0V12" fill="none" stroke="rgba(64,80,106,.18)" stroke-width=".5"/>
+    </pattern>
+    <filter id="plaster" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="4" seed="11"/>
+      <feColorMatrix values="0 0 0 0 .93  0 0 0 0 .89  0 0 0 0 .83  0 0 0 .55 .45"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- 01 · Title ------------------------------------------------------------>
+<section class="spread" id="s01">
+  <div class="page">
+    <p class="kicker">Interior Space Design</p>
+    <h1 style="font-size:132px;line-height:.86;margin-top:170px">Port&shy;<br>folio</h1>
+    <p style="font-family:var(--serif);font-style:italic;font-size:30px;margin-top:22px;color:var(--soft)">2024 — 2026</p>
+    <div style="position:absolute;left:60px;bottom:64px">
+      <p style="font-size:14px;font-weight:500">Your Name</p>
+      <p style="font-size:11px;color:var(--soft);margin-top:6px">Selected academic work · Semester 3—8</p>
+    </div>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <svg width="480" height="700" viewBox="0 0 480 700" style="margin:40px 0 0 0">
+      <g class="wash" filter="url(#wc)" opacity=".55">
+        <path d="M70 120 Q240 60 410 120 L410 640 L70 640Z" fill="var(--clay)"/>
+        <ellipse cx="300" cy="610" rx="150" ry="22" fill="#b89b86"/>
+        <path d="M300 470 q-30 -70 10 -120 q20 60 -10 120z" fill="var(--sage)"/>
+      </g>
+      <g filter="url(#hand)" class="line">
+        <path d="M70 640 L70 120 Q240 30 410 120 L410 640"/>
+        <path d="M110 640 L110 170 Q240 95 370 170 L370 640"/>
+        <path d="M20 640 H460"/>
+        <path d="M140 640 L200 600 H380 L440 640" class="thin"/>
+        <!-- stair -->
+        <path d="M120 640 v-18 h36 v-18 h36 v-18 h36 v-18 h36" />
+        <path d="M120 622 h-6 M156 604 h-6 M192 586 h-6 M228 568 h-6" class="thin"/>
+        <!-- lamp -->
+        <path d="M240 60 V250"/>
+        <path d="M205 290 Q240 238 275 290 Z"/>
+        <path d="M232 298 q8 10 16 0" class="thin"/>
+        <!-- plant and pot -->
+        <path d="M300 640 l-14 -52 h56 l-14 52z"/>
+        <path d="M314 588 c-40 -40 -44 -90 -10 -118 M314 588 c18 -50 60 -60 76 -40 M314 588 c-6 -60 20 -110 40 -118 M314 588 c-40 -10 -70 -40 -64 -60" class="thin"/>
+        <!-- chair -->
+        <path d="M150 560 q0 -70 50 -70 h40 q20 0 20 20 v50 z"/>
+        <path d="M150 560 h120 v18 h-120z"/>
+        <path d="M160 578 l-6 40 M260 578 l6 40 M180 578 l-2 30 M240 578 l2 30" class="thin"/>
+      </g>
+      <text x="420" y="690" text-anchor="end" style="font:300 15px var(--hand);fill:#6b5a48">threshold study — Jan '26</text>
+    </svg>
+    <span class="folio">01</span>
+  </div>
+</section>
+
+<!-- 02 · About ------------------------------------------------------------->
+<section class="spread" id="s02">
+  <div class="page">
+    <p class="kicker">About</p>
+    <div style="position:relative;width:250px;height:320px;margin-top:40px;border:1px solid var(--faint);background:url(#) ">
+      <svg width="250" height="320" style="position:absolute;inset:0"><rect width="250" height="320" fill="url(#hatch)" opacity=".18"/></svg>
+      <p class="hand" style="position:absolute;left:0;right:0;top:140px;text-align:center;font-size:20px">your photo here</p>
+    </div>
+    <h2 style="font-size:46px;margin-top:40px">Your Name</h2>
+    <p class="body" style="margin-top:14px">Write two or three sentences about how you see space: what you notice first when you walk into a room, the materials you keep returning to, the kind of places you want to design. Keep it honest and short — the drawings do the rest.</p>
+    <span class="folio">02</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px 36px;margin-top:92px">
+      <div><p class="kicker">Education</p><p class="body" style="margin-top:14px;color:var(--ink)">B.Des Interior Space Design<br><span style="color:var(--soft)">Your Institute · 2022—2026</span></p></div>
+      <div><p class="kicker">Location</p><p class="body" style="margin-top:14px;color:var(--ink)">City, India<br><span style="color:var(--soft)">Open to internships</span></p></div>
+      <div><p class="kicker">Skills</p><p class="body" style="margin-top:14px;color:var(--ink)">Space planning<br>Furniture &amp; joinery<br>Material research<br>Hand rendering<br>Model making</p></div>
+      <div><p class="kicker">Software</p><p class="body" style="margin-top:14px;color:var(--ink)">AutoCAD<br>SketchUp<br>Enscape / V-Ray<br>Photoshop<br>InDesign</p></div>
+    </div>
+    <svg width="470" height="190" viewBox="0 0 470 190" style="margin-top:60px">
+      <g class="wash" filter="url(#wc)" opacity=".5"><rect x="10" y="40" width="160" height="120" fill="var(--sage)"/><circle cx="330" cy="100" r="62" fill="var(--ochre)"/></g>
+      <g filter="url(#hand)" class="line thin">
+        <rect x="10" y="40" width="160" height="120"/><path d="M10 100 h160 M90 40 v120"/>
+        <circle cx="330" cy="100" r="62"/><path d="M268 100 h124 M330 38 v124"/>
+      </g>
+      <text x="470" y="186" text-anchor="end" style="font:300 15px var(--hand);fill:#6b5a48">window studies</text>
+    </svg>
+    <span class="folio">03</span>
+  </div>
+</section>
+
+<!-- 03 · Contents --------------------------------------------------------->
+<section class="spread" id="s03">
+  <div class="page">
+    <p class="kicker">Contents</p>
+    <div style="margin-top:120px;display:grid;gap:30px">
+      <div style="display:grid;grid-template-columns:52px 1fr auto;align-items:baseline;border-top:1px solid var(--faint);padding-top:16px"><span style="font-family:var(--serif);font-size:30px;color:var(--terra)">01</span><div><h3 style="font-size:28px">Courtyard Café</h3><p class="body" style="font-size:10.5px">Commercial · Ahmedabad</p></div><span class="kicker">p. 04</span></div>
+      <div style="display:grid;grid-template-columns:52px 1fr auto;align-items:baseline;border-top:1px solid var(--faint);padding-top:16px"><span style="font-family:var(--serif);font-size:30px;color:var(--indigo)">02</span><div><h3 style="font-size:28px">Reading Room</h3><p class="body" style="font-size:10.5px">Residential · Pune</p></div><span class="kicker">p. 08</span></div>
+      <div style="display:grid;grid-template-columns:52px 1fr auto;align-items:baseline;border-top:1px solid var(--faint);padding-top:16px"><span style="font-family:var(--serif);font-size:30px;color:var(--sage)">03</span><div><h3 style="font-size:28px">Studies</h3><p class="body" style="font-size:10.5px">Sketchbook · 2024—26</p></div><span class="kicker">p. 10</span></div>
+    </div>
+    <span class="folio">04</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <svg width="480" height="700" viewBox="0 0 480 700" style="margin-top:34px">
+      <g class="wash" filter="url(#wc)" opacity=".55">
+        <rect x="0" y="0" width="226" height="300" fill="var(--clay)"/>
+        <rect x="254" y="0" width="226" height="300" fill="#a9b6c4"/>
+        <rect x="0" y="330" width="480" height="340" fill="#cfd6c2"/>
+      </g>
+      <g filter="url(#hand)" class="line thin">
+        <rect x="0" y="0" width="226" height="300"/><rect x="254" y="0" width="226" height="300"/><rect x="0" y="330" width="480" height="340"/>
+        <path d="M40 300 V120 Q113 50 186 120 V300"/>
+        <path d="M290 260 h150 M300 260 v-120 h130 v120 M320 140 v-40 h90 v40"/>
+        <path d="M40 620 L200 470 L360 620 M120 545 H280 M200 470 V400 M420 620 V420 M380 470 q40 -60 80 0"/>
+      </g>
+    </svg>
+    <span class="folio">05</span>
+  </div>
+</section>
+
+<!-- 04 · Project 01 title ------------------------------------------------->
+<section class="spread" id="s04">
+  <div class="page">
+    <p class="kicker">Project 01</p>
+    <p style="font-family:var(--serif);font-size:210px;line-height:.8;margin-top:60px;color:transparent;-webkit-text-stroke:1.2px var(--terra)">01</p>
+    <h2 style="font-size:62px;line-height:.95;margin-top:26px">Courtyard<br>Café</h2>
+    <div class="meta" style="margin-top:30px"><div>Type<b>Commercial</b></div><div>Area<b>180 m²</b></div><div>Year<b>Sem 5 · 2025</b></div></div>
+    <p class="body" style="margin-top:26px">A neighbourhood café built around an existing neem tree. The brief: keep the courtyard cool without air-conditioning, and let the old house read through the new use.</p>
+    <span class="folio">06</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <p class="kicker">Concept</p>
+    <svg width="480" height="620" viewBox="0 0 480 620" style="margin-top:30px">
+      <g class="wash" filter="url(#wc)" opacity=".5">
+        <rect x="90" y="150" width="300" height="300" fill="var(--clay)"/>
+        <circle cx="240" cy="300" r="78" fill="var(--sage)"/>
+      </g>
+      <g filter="url(#hand)" class="line">
+        <rect x="90" y="150" width="300" height="300"/>
+        <rect x="150" y="210" width="180" height="180" stroke-dasharray="5 5" class="thin"/>
+        <circle cx="240" cy="300" r="78" class="thin"/>
+        <circle cx="240" cy="300" r="6"/>
+        <path d="M40 520 Q240 20 440 520" class="thin" stroke-dasharray="2 6"/>
+        <circle cx="120" cy="190" r="14"/><path d="M120 164v-10M120 226v-10M94 190h-10M156 190h-10" class="thin"/>
+        <path d="M10 560 C80 520 110 480 150 430" /><path d="M150 430 l-3 14 M150 430 l-14 4"/>
+        <path d="M30 600 C110 560 150 520 190 470" class="thin"/><path d="M190 470 l-3 13 M190 470 l-13 4" class="thin"/>
+      </g>
+      <text x="300" y="100" style="font:300 18px var(--hand);fill:#6b5a48">sun path — shade first</text>
+      <text x="0" y="608" style="font:300 18px var(--hand);fill:#6b5a48">breeze from SW</text>
+      <text x="262" y="300" style="font:300 16px var(--hand);fill:#6b5a48">neem stays</text>
+      <text x="330" y="480" style="font:300 16px var(--hand);fill:#6b5a48">jaali edge</text>
+    </svg>
+    <span class="folio">07</span>
+  </div>
+</section>
+
+<!-- 05 · Mood and materials ----------------------------------------------->
+<section class="spread" id="s05">
+  <div class="page" style="padding:0">
+    <svg width="600" height="849" viewBox="0 0 600 849">
+      <rect x="40" y="40" width="300" height="410" fill="#e9e1d4" filter="url(#plaster)"/>
+      <rect x="360" y="40" width="200" height="240" fill="url(#cane)"/>
+      <rect x="360" y="300" width="200" height="150" fill="url(#teak)"/>
+      <g>
+        <rect x="40" y="470" width="220" height="220" fill="#d7cdbd"/>
+        <g id="terrazzo"></g>
+      </g>
+      <g class="wash" filter="url(#wc)"><rect x="280" y="470" width="280" height="330" fill="var(--terra)" opacity=".85"/></g>
+      <rect x="40" y="710" width="220" height="90" fill="#6d7a61"/>
+      <text x="48" y="438" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#6b6258">LIME PLASTER</text>
+      <text x="368" y="270" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#5b4524">CANE</text>
+      <text x="368" y="440" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#f3e6d6">TEAK</text>
+      <text x="48" y="682" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#5f574c">TERRAZZO</text>
+      <text x="290" y="790" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#fbe9dd">TERRACOTTA</text>
+      <text x="48" y="790" style="font:500 9px var(--sans);letter-spacing:.2em;fill:#e9ecdf">KOTA STONE</text>
+    </svg>
+    <span class="folio" style="left:40px">08</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <p class="kicker">Material palette</p>
+    <h2 style="font-size:44px;margin-top:22px;line-height:1">Warm, matt,<br>and local.</h2>
+    <div style="display:grid;gap:18px;margin-top:40px">
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#e9e1d4;border:1px solid var(--faint)"></span><p class="body"><b style="color:var(--ink);font-weight:500">Lime plaster</b> — walls; breathes, stays cool.</p></div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#d8bd8a"></span><p class="body"><b style="color:var(--ink);font-weight:500">Cane</b> — chair backs, pendant shades.</p></div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#8a5a36"></span><p class="body"><b style="color:var(--ink);font-weight:500">Reclaimed teak</b> — counter and doors from the old house.</p></div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:#d7cdbd"></span><p class="body"><b style="color:var(--ink);font-weight:500">Terrazzo</b> — floor, with brick chips from site.</p></div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:18px;align-items:center"><span style="width:40px;height:40px;border-radius:50%;background:var(--terra)"></span><p class="body"><b style="color:var(--ink);font-weight:500">Terracotta</b> — jaali screen to the street.</p></div>
+    </div>
+    <div style="display:flex;gap:0;margin-top:46px;height:54px">
+      <span style="flex:1;background:#efe8dc"></span><span style="flex:1;background:#d9b8a0"></span><span style="flex:1;background:#b86543"></span><span style="flex:1;background:#8b9a7a"></span><span style="flex:1;background:#5d4632"></span><span style="flex:1;background:#2a2622"></span>
+    </div>
+    <span class="folio">09</span>
+  </div>
+</section>
+
+<!-- 06 · Plan and section ------------------------------------------------>
+<section class="spread" id="s06">
+  <div class="page">
+    <p class="kicker">Ground floor plan</p>
+    <svg width="480" height="620" viewBox="0 0 480 620" style="margin-top:40px">
+      <rect width="480" height="560" fill="url(#grid)"/>
+      <g>
+        <path d="M30 30 H450 V530 H30 Z M44 44 V516 H436 V44 Z" fill="#2a2622" fill-rule="evenodd"/>
+        <rect x="200" y="516" width="80" height="14" fill="#fdfcf8"/>
+        <rect x="140" y="170" width="200" height="200" fill="url(#hatch)" opacity=".35"/>
+        <rect x="140" y="170" width="200" height="200" class="line thin"/>
+      </g>
+      <g class="line thin">
+        <circle cx="240" cy="270" r="54" stroke-dasharray="3 4"/>
+        <circle cx="240" cy="270" r="8"/>
+        <path d="M60 60 h120 v34 h-120z"/>
+        <path d="M44 150 h40 M44 400 h40" />
+        <circle cx="90" cy="220" r="16"/><circle cx="90" cy="300" r="16"/><circle cx="390" cy="220" r="16"/><circle cx="390" cy="300" r="16"/><circle cx="390" cy="440" r="16"/><circle cx="90" cy="440" r="16"/>
+        <path d="M300 60 h120 v70 h-120z M300 95 h120"/>
+        <path d="M200 530 a40 40 0 0 1 40 -40 M280 530 a40 40 0 0 0 -40 -40"/>
+        <path d="M240 600 v-40 M232 570 l8 -10 l8 10" />
+      </g>
+      <g style="font:500 8px var(--sans);letter-spacing:.18em;fill:#6b6258">
+        <text x="196" y="252">COURTYARD</text><text x="64" y="118">COUNTER</text><text x="316" y="150">KITCHEN</text><text x="222" y="612">ENTRY</text>
+      </g>
+      <g transform="translate(440 590)" class="line thin"><circle r="14"/><path d="M0 -14 L5 6 L0 2 L-5 6Z" fill="#2a2622"/></g>
+      <g transform="translate(30 590)"><rect width="30" height="5" fill="#2a2622"/><rect x="30" width="30" height="5" fill="none" stroke="#2a2622" stroke-width=".6"/><rect x="60" width="30" height="5" fill="#2a2622"/><text y="18" style="font:8px var(--sans);fill:#6b6258">0   1   2   3 m</text></g>
+    </svg>
+    <span class="folio">10</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <p class="kicker">Section A—A'</p>
+    <svg width="480" height="560" viewBox="0 0 480 560" style="margin-top:110px">
+      <g class="wash" filter="url(#wc)" opacity=".5"><circle cx="240" cy="150" r="96" fill="var(--sage)"/><rect x="0" y="320" width="480" height="40" fill="var(--clay)"/></g>
+      <path d="M0 360 H480" class="line thick"/>
+      <rect x="0" y="360" width="480" height="30" fill="url(#hatch-dense)"/>
+      <path d="M20 360 V120 H130 V360 M350 360 V120 H460 V360" fill="url(#hatch)" stroke="#2a2622" stroke-width="1"/>
+      <path d="M10 120 H140 M340 120 H470" class="line thick"/>
+      <g filter="url(#hand)" class="line">
+        <path d="M240 360 V190 M240 250 l-30 -40 M240 230 l34 -44"/>
+        <circle cx="240" cy="150" r="96" class="thin"/>
+        <path d="M170 360 v-60 h12 v60 M298 360 v-60 h12 v60 M160 300 h160" class="thin"/>
+        <!-- figures -->
+        <circle cx="90" cy="286" r="7" class="thin"/><path d="M90 293 v36 M90 329 l-8 31 M90 329 l8 31 M90 303 l-12 18 M90 303 l12 18" class="thin"/>
+        <circle cx="395" cy="286" r="7" class="thin"/><path d="M395 293 v36 M395 329 l-8 31 M395 329 l8 31 M395 303 l-12 18 M395 303 l12 18" class="thin"/>
+      </g>
+      <g class="line thin"><path d="M20 440 H460 M20 432 v16 M460 432 v16"/></g>
+      <text x="240" y="462" text-anchor="middle" style="font:9px var(--sans);letter-spacing:.14em;fill:#6b6258">14 400</text>
+      <text x="300" y="60" style="font:300 17px var(--hand);fill:#6b5a48">canopy = ceiling</text>
+    </svg>
+    <span class="folio">11</span>
+  </div>
+</section>
+
+<!-- 07 · Perspective (left page) + render (right page): separate images ---->
+<section class="spread single" id="s07-left">
+  <div class="page half">
+    <p class="kicker">Perspective sketch</p>
+    <svg width="480" height="660" viewBox="0 0 480 660" style="margin-top:34px">
+      <g class="wash" filter="url(#wc)" opacity=".55">
+        <path d="M150 230 Q240 150 330 230 V470 H150Z" fill="#cfd6c2"/>
+        <path d="M0 620 L150 470 H330 L480 620Z" fill="var(--clay)"/>
+      </g>
+      <g filter="url(#hand)" class="line">
+        <path d="M0 40 L150 190 H330 L480 40"/>
+        <path d="M0 620 L150 470 H330 L480 620"/>
+        <path d="M150 190 V470 M330 190 V470"/>
+        <path d="M180 470 V240 Q240 180 300 240 V470" class="thin"/>
+        <path d="M90 100 V330 M390 100 V330" class="thin"/>
+        <path d="M60 70 V380 L90 350 M420 70 V380 L390 350" class="thin"/>
+        <path d="M240 60 V150 M218 168 q22 -34 44 0z M180 60 V110 M166 124 q14 -22 28 0z M300 60 V110 M286 124 q14 -22 28 0z" class="thin"/>
+        <path d="M200 560 h80 v10 h-80z M210 570 l-4 40 M270 570 l4 40" class="thin"/>
+        <circle cx="160" cy="590" r="14" class="thin"/><circle cx="320" cy="590" r="14" class="thin"/>
+      </g>
+      <text x="300" y="30" style="font:300 17px var(--hand);fill:#6b5a48">through the arch</text>
+    </svg>
+    <span class="folio" style="left:60px">12</span>
+  </div>
+</section>
+<section class="spread single" id="s07-right">
+  <div class="page half" style="padding:0">
+    <svg width="600" height="849" viewBox="0 0 600 849">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8dcc8"/><stop offset="1" stop-color="#c9a98a"/></linearGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b98a68"/><stop offset="1" stop-color="#7a5238"/></linearGradient>
+        <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7e6" stop-opacity=".75"/><stop offset="1" stop-color="#fff7e6" stop-opacity="0"/></linearGradient>
+        <radialGradient id="glow" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#fff2d6" stop-opacity=".9"/><stop offset="1" stop-color="#fff2d6" stop-opacity="0"/></radialGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <rect width="600" height="849" fill="#7d624d"/>
+      <path d="M0 0 H600 V560 H0Z" fill="#a98a70"/>
+      <path d="M150 260 Q300 120 450 260 V580 H150Z" fill="url(#sky)"/>
+      <path d="M0 849 L150 580 H450 L600 849Z" fill="url(#floor)"/>
+      <circle cx="300" cy="360" r="120" fill="#6f7d5f" filter="url(#soft)"/>
+      <circle cx="260" cy="330" r="80" fill="#8b9a7a" filter="url(#soft)" opacity=".8"/>
+      <path d="M300 580 V420" stroke="#4a3b2c" stroke-width="10"/>
+      <path d="M330 0 L520 849 H300 L200 0Z" fill="url(#shaft)" opacity=".5" filter="url(#soft)"/>
+      <g fill="#d9b67a"><path d="M270 150 q30 -46 60 0z"/><path d="M160 190 q20 -30 40 0z"/><path d="M400 190 q20 -30 40 0z"/></g>
+      <g stroke="#3b2f25" stroke-width="1.2"><path d="M300 0 V104 M180 0 V160 M420 0 V160"/></g>
+      <circle cx="300" cy="170" r="70" fill="url(#glow)"/>
+      <rect x="220" y="700" width="160" height="16" fill="#5a3c28"/><path d="M232 716 l-6 80 M368 716 l6 80" stroke="#3f2a1c" stroke-width="6"/>
+      <ellipse cx="300" cy="800" rx="120" ry="12" fill="#3c2718" opacity=".35" filter="url(#soft)"/>
+      <rect width="600" height="849" fill="#000" opacity=".06"/>
+      <text x="300" y="820" text-anchor="middle" style="font:500 9px var(--sans);letter-spacing:.3em;fill:#f5ead8">SAMPLE RENDER — REPLACE WITH YOURS</text>
+    </svg>
+  </div>
+</section>
+
+<!-- 08 · Project 02 title -------------------------------------------------->
+<section class="spread" id="s08">
+  <div class="page">
+    <p class="kicker">Project 02</p>
+    <p style="font-family:var(--serif);font-size:210px;line-height:.8;margin-top:60px;color:transparent;-webkit-text-stroke:1.2px var(--indigo)">02</p>
+    <h2 style="font-size:62px;line-height:.95;margin-top:26px">Reading<br>Room</h2>
+    <div class="meta" style="margin-top:30px"><div>Type<b>Residential</b></div><div>Area<b>22 m²</b></div><div>Year<b>Sem 6 · 2025</b></div></div>
+    <p class="body" style="margin-top:26px">A 3 × 7 m room in a Pune apartment turned into a library for a family of readers: one wall of shelving that folds into a window seat, a desk, and a place to lie down.</p>
+    <span class="folio">14</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <p class="kicker">Axonometric</p>
+    <svg width="480" height="620" viewBox="0 0 480 620" style="margin-top:40px">
+      <g class="wash" filter="url(#wc)" opacity=".5">
+        <path d="M240 120 L440 235 L440 470 L240 355Z" fill="#a9b6c4"/>
+        <path d="M40 235 L240 350 L440 235 L240 120Z" fill="#e3d6c2" transform="translate(0 235)"/>
+      </g>
+      <g filter="url(#hand)" class="line">
+        <path d="M40 470 L240 585 L440 470 L240 355Z"/>
+        <path d="M40 470 V235 L240 120 V355 M440 470 V235 L240 120"/>
+        <path d="M270 172 L420 258 M270 212 L420 298 M270 252 L420 338 M270 292 L420 378 M270 332 L420 418" class="thin"/>
+        <path d="M270 172 V372 M320 200 V400 M370 229 V429 M420 258 V458" class="thin"/>
+        <path d="M80 330 L180 272 V200 L80 258Z" class="thin"/>
+        <path d="M200 470 L300 527 L360 492 L260 435Z M200 470 v22 M300 527 v22 M360 492 v22" class="thin"/>
+      </g>
+      <text x="300" y="130" style="font:300 17px var(--hand);fill:#6b5a48">shelves fold into a seat</text>
+    </svg>
+    <span class="folio">15</span>
+  </div>
+</section>
+
+<!-- 09 · Joinery detail + elevation ----------------------------------------->
+<section class="spread" id="s09">
+  <div class="page">
+    <p class="kicker">Detail 1 : 5</p>
+    <svg width="480" height="620" viewBox="0 0 480 620" style="margin-top:40px">
+      <circle cx="240" cy="290" r="210" fill="none" stroke="#2a2622" stroke-width=".6"/>
+      <g>
+        <rect x="120" y="160" width="36" height="260" fill="url(#teak)"/>
+        <rect x="156" y="260" width="200" height="30" fill="url(#teak)"/>
+        <rect x="156" y="268" width="26" height="14" fill="#fdfcf8" stroke="#2a2622" stroke-width=".6"/>
+        <rect x="120" y="160" width="36" height="260" fill="none" stroke="#2a2622"/>
+        <rect x="156" y="260" width="200" height="30" fill="none" stroke="#2a2622"/>
+        <path d="M356 250 v50 M366 250 v50" stroke="#2a2622" stroke-width=".6"/>
+      </g>
+      <g class="line thin">
+        <path d="M156 330 H356 M156 322 v16 M356 322 v16"/>
+        <path d="M100 160 V420 M92 160 h16 M92 420 h16"/>
+        <path d="M182 275 L300 150 H380"/>
+      </g>
+      <text x="256" y="350" text-anchor="middle" style="font:9px var(--sans);fill:#6b6258">600</text>
+      <text x="84" y="294" text-anchor="middle" transform="rotate(-90 84 294)" style="font:9px var(--sans);fill:#6b6258">900</text>
+      <text x="304" y="142" style="font:300 16px var(--hand);fill:#6b5a48">housed dado, glued</text>
+      <text x="0" y="600" style="font:500 8px var(--sans);letter-spacing:.2em;fill:#6b6258">SHELF TO UPRIGHT — 18 MM REC. TEAK</text>
+    </svg>
+    <span class="folio">16</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <p class="kicker">Elevation B</p>
+    <svg width="480" height="560" viewBox="0 0 480 560" style="margin-top:90px">
+      <g class="wash" filter="url(#wc)" opacity=".45"><rect x="160" y="110" width="160" height="150" fill="#a9b6c4"/><rect x="150" y="300" width="180" height="60" fill="var(--terra)"/></g>
+      <rect x="0" y="0" width="480" height="420" fill="none" stroke="#2a2622" stroke-width="1.4"/>
+      <g class="line thin">
+        <path d="M40 20 V400 M440 20 V400 M40 20 H440"/>
+        <path d="M40 90 H150 M40 160 H150 M40 230 H150 M40 300 H150 M330 90 H440 M330 160 H440 M330 230 H440 M330 300 H440"/>
+        <path d="M150 20 V400 M330 20 V400"/>
+        <rect x="160" y="110" width="160" height="150"/><path d="M240 110 V260 M160 185 H320"/>
+        <path d="M150 300 H330 M150 360 H330 M170 360 V400 M310 360 V400"/>
+        <path d="M0 440 H480 M0 432 v16 M480 432 v16"/>
+      </g>
+      <text x="240" y="462" text-anchor="middle" style="font:9px var(--sans);letter-spacing:.14em;fill:#6b6258">3 000</text>
+      <text x="170" y="296" style="font:300 15px var(--hand);fill:#6b5a48">window seat — lift-up lid</text>
+    </svg>
+    <span class="folio">17</span>
+  </div>
+</section>
+
+<!-- 10 · Studies ------------------------------------------------------------>
+<section class="spread" id="s10">
+  <div class="page">
+    <p class="kicker">Project 03 · Studies</p>
+    <h2 style="font-size:44px;margin-top:22px;line-height:1">Things I stop<br>to draw.</h2>
+    <svg width="480" height="520" viewBox="0 0 480 520" style="margin-top:40px">
+      <g class="wash" filter="url(#wc)" opacity=".5"><rect x="0" y="0" width="225" height="240" fill="#cfd6c2"/><rect x="255" y="0" width="225" height="240" fill="var(--clay)"/><rect x="0" y="270" width="480" height="240" fill="#a9b6c4"/></g>
+      <g filter="url(#hand)" class="line thin">
+        <rect x="0" y="0" width="225" height="240"/><rect x="255" y="0" width="225" height="240"/><rect x="0" y="270" width="480" height="240"/>
+        <path d="M30 210 h40 v-30 h40 v-30 h40 v-30 h40 M30 210 V60"/>
+        <path d="M300 210 V70 h140 V210 M300 110 h140 M370 70 V210 M330 70 q40 -40 80 0"/>
+        <path d="M60 470 q60 -150 180 -150 q120 0 180 150 M40 470 h400 M240 320 v150 M150 470 v-60 M330 470 v-60"/>
+      </g>
+      <g style="font:300 15px var(--hand);fill:#6b5a48"><text x="10" y="232">old stair, Pol house</text><text x="265" y="232">jharokha</text><text x="10" y="502">market roof</text></g>
+    </svg>
+    <span class="folio">18</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <svg width="480" height="700" viewBox="0 0 480 700" style="margin-top:34px">
+      <g class="wash" filter="url(#wc)" opacity=".55"><circle cx="120" cy="140" r="90" fill="var(--ochre)"/><rect x="250" y="40" width="210" height="260" fill="#cfd6c2"/><path d="M0 460 Q240 360 480 460 V680 H0Z" fill="var(--clay)"/></g>
+      <g filter="url(#hand)" class="line thin">
+        <path d="M120 40 V80 M86 120 q34 -60 68 0z M120 120 v140 M90 260 h60"/>
+        <path d="M280 300 V90 q70 -60 140 0 V300 M300 300 V110 q50 -40 100 0 V300 M280 200 H420"/>
+        <path d="M60 600 q10 -80 70 -80 h60 q30 0 30 30 v50 z M60 600 h160 v20 h-160z M70 620 l-6 50 M210 620 l6 50"/>
+        <path d="M330 660 l-16 -60 h70 l-16 60z M349 600 c-40 -50 -40 -110 0 -130 M349 600 c30 -70 80 -80 90 -50 M349 600 c-10 -70 30 -120 50 -130"/>
+      </g>
+      <g style="font:300 15px var(--hand);fill:#6b5a48"><text x="20" y="300">brass lamp</text><text x="300" y="330">arch studies</text><text x="20" y="690">cane lounger</text></g>
+    </svg>
+    <span class="folio">19</span>
+  </div>
+</section>
+
+<!-- 11 · Thank you ---------------------------------------------------------->
+<section class="spread" id="s11">
+  <div class="page">
+    <p class="kicker">Contact</p>
+    <h1 style="font-size:110px;line-height:.9;margin-top:180px">Thank<br><em>you.</em></h1>
+    <div style="position:absolute;left:60px;bottom:70px;display:grid;gap:8px" class="body">
+      <p style="color:var(--ink)">you@email.com</p><p>behance.net/yourname</p><p>instagram.com/yourname</p>
+    </div>
+    <span class="folio">20</span>
+  </div>
+  <div class="page">
+    <span class="sample">SAMPLE</span>
+    <svg width="480" height="700" viewBox="0 0 480 700" style="margin-top:40px">
+      <g class="wash" filter="url(#wc)" opacity=".5"><path d="M60 660 V260 Q240 80 420 260 V660Z" fill="#cfd6c2"/></g>
+      <g filter="url(#hand)" class="line">
+        <path d="M60 660 V260 Q240 80 420 260 V660"/>
+        <path d="M20 660 H460"/>
+        <path d="M240 660 V470 M240 540 c-50 -30 -60 -90 -30 -120 M240 510 c40 -40 90 -40 100 -10 M240 480 c-10 -50 20 -80 40 -90" class="thin"/>
+        <path d="M200 660 l-8 -50 h96 l-8 50z" class="thin"/>
+      </g>
+    </svg>
+    <span class="folio">21</span>
+  </div>
+</section>
+
+<script>
+  // terrazzo chips
+  const g = document.getElementById('terrazzo');
+  const cols = ['#b86543','#8b9a7a','#efe8dc','#6d6259','#c9a24b','#fff'];
+  let seed = 3; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 260; i++) {
+    const x = 40 + rnd() * 220, y = 470 + rnd() * 220, r = 1.5 + rnd() * 5, n = 5 + Math.floor(rnd() * 3);
+    let d = '';
+    for (let k = 0; k < n; k++) { const a = (k / n) * Math.PI * 2 + rnd(); const rr = r * (0.6 + rnd() * 0.6); d += (k ? 'L' : 'M') + (x + Math.cos(a) * rr).toFixed(1) + ' ' + (y + Math.sin(a) * rr).toFixed(1) }
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d + 'Z'); p.setAttribute('fill', cols[i % cols.length]); p.setAttribute('opacity', '.85');
+    g.appendChild(p);
+  }
+</script>
+</body>
+</html>

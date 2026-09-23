@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+/* Colours and fonts come from portfolio.config.ts (see src/lib/theme.ts).
+   Use them in Tailwind classes: bg-bg, text-ink, text-accent, font-display, font-body. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --font-display: var(--font-display-family);
+  --font-body: var(--font-body-family);
+}
+
+:root {
+  --bg: #e9e4da;
+  --ink: #2a2622;
+  --accent: #b86543;
+  --font-display-family: Georgia, serif;
+  --font-body-family: system-ui, sans-serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body-family);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { margin: 0; min-height: 100svh }
+
+::selection { background: color-mix(in oklab, var(--ink) 85%, transparent); color: var(--bg) }
+
+/* the sketchbook's captions and cover use your fonts too */
+.skb {
+  --skb-display-font: var(--font-display-family);
+  --skb-body-font: var(--font-body-family);
+  --skb-ui: color-mix(in oklab, var(--ink) 80%, transparent);
+}
