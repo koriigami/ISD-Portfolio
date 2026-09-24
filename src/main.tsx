@@ -5,6 +5,7 @@ import App from './App'
 import config from './portfolio.config'
 import { initAnalytics } from './lib/analytics'
 import { applyTheme } from './lib/theme'
+import '@kagadmodyaa/sketchbook/style.css'
 import './index.css'
 
 applyTheme(config.theme)

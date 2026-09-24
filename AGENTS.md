@@ -19,15 +19,14 @@ React 19 + Vite + TypeScript, styled with Tailwind CSS v4, deployed on Vercel. R
 | `src/pages/ProjectPage.tsx` | The page for each project | Yes |
 | `src/index.css` | Global styles and Tailwind theme tokens | Yes |
 | `public/pages/` | Portfolio page images | Yes: add or replace images |
-| `src/sketchbook/**` | **The sketchbook engine** (page turning, magnifier, lightbox) | **No. Never edit.** |
-| `src/showcase/**` | The "Design your book" panel. It only appears in `npm run dev` (and on the Kagad Modiya demo), never on the live site | No |
+| `vendor/sketchbook/**` | **The sketchbook component**, imported as `@kagadmodyaa/sketchbook` | **No. Never edit.** |
 | `src/lib/*` | Config types, theme loader, Google Analytics | Only if asked |
 
 ## Rules
 
-1. **Never modify anything in `src/sketchbook/`.** Change the book only through the `book` block of
+1. **Never modify anything in `vendor/sketchbook/`.** Change the book only through the `book` block of
    `src/portfolio.config.ts` or the props of `<Sketchbook>` in `src/site/Hero.tsx`. The options are
-   documented in `src/sketchbook/types.ts` (read it, don't change it).
+   documented in `vendor/sketchbook/types.ts` (read it, don't change it).
 2. Keep content in `src/portfolio.config.ts`. Sections read their text from it. Don't hard-code a
    name, email or project into a component.
 3. Use the theme tokens in Tailwind classes, not hex codes: `bg-bg`, `text-ink`, `text-accent`,
@@ -49,8 +48,9 @@ The default book has **square pages**, so a `spread` image should be **2:1** (e.
 single page square. Images of any other shape still show whole, with paper around them.
 Run `npm run images` after adding large images. It shrinks them and updates the file names in the config.
 
-**Change the book**: edit `book` in the config. The easiest way is to let the student pick a look
-in the "Design your book" panel (`npm run dev`) and paste its "Copy settings" output over `book`.
+**Change the book**: edit `book` in the config. The easiest way is to let the student design the
+book on the Sketchbook page at https://kagadmodyaa.vercel.app/components/sketchbook and paste its
+"Copy settings" output over `book`.
 Options: `pageShape` (`'square' | 'portrait' | 'landscape'`),
 `binding` (`'stitched' | 'spiral' | 'wire-o' | 'coptic' | 'glued'`), `bindingColor` (wire or thread colour),
 `paper` (any colour), `paperTexture` (`'hot-press' | 'cold-press' | 'smooth' | 'kraft' | 'dotted' | 'grid' | 'none'`),

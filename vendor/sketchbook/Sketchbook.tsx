@@ -5,7 +5,7 @@ import type { SketchbookHandle, SketchbookProps } from './types'
 import './sketchbook.css'
 
 /**
- * Kagad Modiya Sketchbook.
+ * Kagadmodyaa Sketchbook.
  *
  *   <Sketchbook pages={pages} book={{ binding: 'spiral', cover: { title: 'Portfolio' } }} />
  *

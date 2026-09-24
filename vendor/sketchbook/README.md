@@ -1,4 +1,7 @@
-# Kagad Modiya Sketchbook: engine
+# Kagadmodyaa Sketchbook: engine
+
+> This folder is a synced copy of the `@kagadmodyaa/sketchbook` package. Don't edit it — it gets
+> replaced by the npm package.
 
 > **Students and AI assistants: don't edit this folder.** Configure the book from
 > `src/portfolio.config.ts` or through `<Sketchbook>` props (see `types.ts`).
@@ -32,4 +35,4 @@ import { Sketchbook } from './sketchbook'
 Interaction: a drag turns the page. A tap (under 7 px of movement) opens the larger view. Arrow keys
 turn pages; `+`/`-`/`0` zoom when the book has focus. `prefers-reduced-motion` swaps turns for a fade.
 
-MIT © Kagad Modiya
+MIT © Kagadmodyaa

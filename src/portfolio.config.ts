@@ -41,8 +41,8 @@ export default defineConfig({
   },
 
   /* ---------------------------------------------------------------- book --
-     Tip: run `npm run dev` and use the "Design your book" panel to try these
-     live, then press "Copy settings" and paste the result over this block.
+     Tip: design your book at https://kagadmodyaa.vercel.app/components/sketchbook
+     and paste its Copy settings over this block.
 
      pageShape     'square' | 'portrait' | 'landscape'   (shape of ONE page;
                    square opens to a 2:1 spread — export spreads at 2400×1200)

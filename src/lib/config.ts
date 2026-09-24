@@ -1,4 +1,4 @@
-import type { BookOptions, SketchbookPage } from '../sketchbook'
+import type { BookOptions, SketchbookPage } from '@kagadmodyaa/sketchbook'
 
 /* The shape of portfolio.config.ts. You shouldn't need to edit this file;
    it only exists so your editor can autocomplete and check the config. */

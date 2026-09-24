@@ -5,7 +5,7 @@ visitors drag pages to turn them, lift a magnifying glass over your drawings, an
 see it large. Around the book is a landing page that you design yourself, with the help of an AI
 assistant.
 
-Sketchbook engine by [Kagad Modiya](https://kagadmodyaa.com). Free to use.
+Sketchbook engine by [Kagadmodyaa](https://kagadmodyaa.com). Free to use.
 
 ---
 
@@ -61,12 +61,13 @@ Open <http://localhost:5173>. This is your site, live on your computer. It updat
 
 In the same file, change your name, about text, email, colours and fonts.
 
-**Design your book.** While `npm run dev` is running, a **Design your book** panel sits next to the
-book. Try the page shape, binding (stitched, spiral, Wire-O, Coptic, glued), wire or thread colour,
+**Design your book.** Open the Sketchbook page at
+[kagadmodyaa.vercel.app/components/sketchbook](https://kagadmodyaa.vercel.app/components/sketchbook)
+and try the page shape, binding (stitched, spiral, Wire-O, Coptic, glued), wire or thread colour,
 paper colour and texture (hot-press, cold-press, kraft, dotted, grid…), cover colour, material and
 title position, ribbon and tabs. When you like it, press **Copy settings** and paste it over the
 `book: { … }` block in `src/portfolio.config.ts` (or press **Copy as AI prompt** and give it to your
-AI assistant). The panel only exists on your computer; visitors to your live site never see it.
+AI assistant).
 
 ## 4. Design your landing page with AI
 
@@ -113,14 +114,11 @@ src/portfolio.config.ts   ← your content, colours, fonts and book style
 src/site/                 ← your landing page, one file per section
 src/pages/                ← project pages
 public/pages/             ← your portfolio images
-src/sketchbook/           ← the sketchbook engine; don't edit
+vendor/sketchbook/        ← the sketchbook component, a copy of the @kagadmodyaa/sketchbook package; don't edit
 ```
 
 ## For maintainers
 
-The public demo shows the Design panel because its Vercel project has the environment variable
-`VITE_SHOWCASE=true`. Students' copies don't have it, so the panel isn't even in their build.
-
 The sample pages in `public/pages/` are drawn in `scripts/samples/samples.html` and rendered with
 `NODE_PATH="$(npm root -g)" node scripts/samples/make-samples.mjs` (needs Playwright). The engine
-lives in `src/sketchbook/` and has no dependencies beyond React. See its README.
+lives in `vendor/sketchbook/` and has no dependencies beyond React. See its README.

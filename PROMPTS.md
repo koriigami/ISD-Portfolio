@@ -14,8 +14,9 @@ time, look at the result in your browser, then ask for the next.
 
 ## The book
 
-The quickest way: run `npm run dev`, open **Design your book** beside the book, pick a look, press
-**Copy as AI prompt**, and paste that into the chat. Or describe it:
+The quickest way: open the Sketchbook page at
+https://kagadmodyaa.vercel.app/components/sketchbook, pick a look, press **Copy as AI prompt**, and
+paste that into the chat. Or describe it:
 
 > Make the book a Coptic-bound sketchbook with kraft paper and a brown leather cover titled "___".
 
@@ -40,7 +41,7 @@ The quickest way: run `npm run dev`, open **Design your book** beside the book, 
 
 ## When something breaks
 
-> `npm run build` fails with this error: ___. Fix it without touching src/sketchbook.
+> `npm run build` fails with this error: ___. Fix it without touching vendor/sketchbook.
 
 > The site looks broken on my phone. Check src/site for layouts that don't fit a 390px-wide screen
 > and fix them.

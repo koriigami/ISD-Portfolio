@@ -1,4 +1,4 @@
-/* Kagad Modiya Sketchbook — https://kagadmodyaa.com
+/* Kagadmodyaa Sketchbook — https://kagadmodyaa.com
    MIT licensed. Free to use, change and share. */
 export { Sketchbook } from './Sketchbook'
 export type {

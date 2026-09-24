@@ -1,4 +1,4 @@
-/* Kagad Modiya Sketchbook — public types.
+/* Kagadmodyaa Sketchbook — public types.
    Everything a portfolio can say about its book lives here. */
 
 /** One opening of the book: what you see when it lies open. */

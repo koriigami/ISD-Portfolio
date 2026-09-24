@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import type { SketchbookHandle } from '../sketchbook'
+import type { SketchbookHandle } from '@kagadmodyaa/sketchbook'
 import About from './About'
 import Contact from './Contact'
 import Footer from './Footer'
