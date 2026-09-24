@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useId, useImperativeHandle, useMemo, useRef, useState, type Ref } from 'react'
 import { SketchbookEngine } from './engine/engine'
 import { Lightbox } from './Lightbox'

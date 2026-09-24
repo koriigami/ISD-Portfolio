@@ -16,6 +16,9 @@
 
   position: relative;
   display: grid;
+  /* the column follows the container, never the book: otherwise the book's
+     own width feeds back into the space it measures and it outgrows its parent */
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   gap: 10px;
   width: 100%;
@@ -33,6 +36,7 @@
 /* ---------------------------------------------------------------- stage */
 
 .skb-stage {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
