@@ -20,6 +20,7 @@ React 19 + Vite + TypeScript, styled with Tailwind CSS v4, deployed on Vercel. R
 | `src/index.css` | Global styles and Tailwind theme tokens | Yes |
 | `public/pages/` | Portfolio page images | Yes: add or replace images |
 | `src/sketchbook/**` | **The sketchbook engine** (page turning, magnifier, lightbox) | **No. Never edit.** |
+| `src/showcase/**` | The "Design your book" panel. It only appears in `npm run dev` (and on the Kagad Modiya demo), never on the live site | No |
 | `src/lib/*` | Config types, theme loader, Google Analytics | Only if asked |
 
 ## Rules
@@ -44,13 +45,17 @@ React 19 + Vite + TypeScript, styled with Tailwind CSS v4, deployed on Vercel. R
 // or one image per side of the book:
 { left: '/pages/12a.webp', right: '/pages/12b.webp', alt: '…' },
 ```
-An exported A3/A4 **landscape** portfolio page goes in as a `spread` with `pageShape: 'portrait'`.
+The default book has **square pages**, so a `spread` image should be **2:1** (e.g. 2400×1200) and a
+single page square. Images of any other shape still show whole, with paper around them.
 Run `npm run images` after adding large images. It shrinks them and updates the file names in the config.
 
-**Change the book**: edit `book` in the config:
-`pageShape` (`'portrait' | 'square' | 'landscape'`), `binding` (`'spiral' | 'stitched' | 'glued'`),
-`paper` (colour), `paperTexture` (`'cold-press' | 'smooth' | 'kraft' | 'none'`),
-`cover` (`{ title, subtitle, color, ink, material: 'cloth' | 'kraft' | 'leather' | 'card', band }` or `false`),
+**Change the book**: edit `book` in the config. The easiest way is to let the student pick a look
+in the "Design your book" panel (`npm run dev`) and paste its "Copy settings" output over `book`.
+Options: `pageShape` (`'square' | 'portrait' | 'landscape'`),
+`binding` (`'stitched' | 'spiral' | 'wire-o' | 'coptic' | 'glued'`), `bindingColor` (wire or thread colour),
+`paper` (any colour), `paperTexture` (`'hot-press' | 'cold-press' | 'smooth' | 'kraft' | 'dotted' | 'grid' | 'none'`),
+`imageFit` (`'contain'` shows images whole, `'cover'` fills the page),
+`cover` (`{ title, subtitle, color, ink, material: 'card' | 'cloth' | 'kraft' | 'leather', align: 'left' | 'right', band, image }` or `false`),
 `ribbon` (colour or `false`), `intro`, `openAt`, `loupe`, `captions`, `tabs`, `maxHeight`.
 
 **Add a project**: add an object to `projects` (`slug`, `title`, `summary`, optional `type`,

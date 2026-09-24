@@ -14,9 +14,12 @@ time, look at the result in your browser, then ask for the next.
 
 ## The book
 
-> Make the book a stitched sketchbook with kraft paper and a brown leather cover titled "___".
+The quickest way: run `npm run dev`, open **Design your book** beside the book, pick a look, press
+**Copy as AI prompt**, and paste that into the chat. Or describe it:
 
-> Change the book to square pages with a black cloth cover, cream paper, and no ribbon.
+> Make the book a Coptic-bound sketchbook with kraft paper and a brown leather cover titled "___".
+
+> Change the book to a gold Wire-O binding on dotted paper, with a black cloth cover and no ribbon.
 
 > Make the book open straight to the page about my thesis project instead of the first page.
 

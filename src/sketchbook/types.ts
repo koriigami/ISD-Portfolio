@@ -22,8 +22,12 @@ export type PairPage = PageCommon & { spread?: never; left?: string; right?: str
 
 /** The shape of ONE page. The open book is two of these side by side. */
 export type PageShape = 'portrait' | 'square' | 'landscape'
-export type Binding = 'spiral' | 'stitched' | 'glued'
-export type PaperTexture = 'cold-press' | 'smooth' | 'kraft' | 'none'
+/** spiral: one continuous coil · wire-o: twin wire loops · stitched: sewn signatures (thread in the fold)
+ *  · coptic: exposed chain stitch across the spine · glued: perfect-bound, a deep fold, nothing visible */
+export type Binding = 'spiral' | 'wire-o' | 'stitched' | 'coptic' | 'glued'
+/** cold-press: toothy watercolour paper · hot-press: fine and smooth · smooth: plain · kraft: fibrous
+ *  · dotted: dot-grid sketchbook · grid: squared sketchbook · none: flat colour */
+export type PaperTexture = 'cold-press' | 'hot-press' | 'smooth' | 'kraft' | 'dotted' | 'grid' | 'none'
 export type CoverMaterial = 'cloth' | 'kraft' | 'leather' | 'card'
 
 export type CoverOptions = {
@@ -38,12 +42,17 @@ export type CoverOptions = {
   image?: string
   /** An elastic band across the front board, like a pocket notebook. */
   band?: string | false
+  /** Where the title sits on the cover. */
+  align?: 'left' | 'right'
 }
 
 export type BookOptions = {
+  /** Shape of one page. 'square' (default) opens to a 2:1 spread. */
   pageShape?: PageShape
   binding?: Binding
-  /** Paper colour, any CSS colour. Page images are printed onto it. */
+  /** Wire colour (spiral, wire-o) or thread colour (stitched, coptic). */
+  bindingColor?: string
+  /** Paper colour, any CSS colour. Page images are printed onto it (dark papers switch that off). */
   paper?: string
   paperTexture?: PaperTexture
   /** When true, whites in your images take the paper colour (looks printed). */
@@ -103,4 +112,6 @@ export type SketchbookHandle = {
   prev: () => void
   /** Current opening, 0 when closed. */
   current: () => number
+  /** Close the book and play the opening again. */
+  replayIntro: () => void
 }

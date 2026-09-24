@@ -17,8 +17,8 @@ const out = join(here, '../../public/pages')
 await mkdir(out, { recursive: true })
 
 const shots = {
-  s01: '01-title', s02: '02-about', s03: '03-contents', s04: '04-cafe-title', s05: '05-cafe-materials',
-  s06: '06-cafe-drawings', 's07-left': '07-cafe-sketch', 's07-right': '07-cafe-render', s08: '08-reading-room',
+  s01: '01-title', s02: '02-about', s03: '03-contents', s04: '04-cafe-title', s05: '05-cafe-layout',
+  s06: '06-cafe-materials', 's07-left': '07-cafe-sketch', 's07-right': '07-cafe-render', s08: '08-reading-room',
   s09: '09-reading-room-details', s10: '10-studies', s11: '11-thank-you',
 }
 
@@ -26,21 +26,20 @@ const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || 
 const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1300, height: 900 } })
 await page.goto(pathToFileURL(join(here, 'samples.html')).href, { waitUntil: 'networkidle' })
 // Offline? Point FONTSOURCE at a node_modules/@fontsource folder holding
-// instrument-serif, inter and kalam, and the fonts load from disk instead.
+// jost, inter and kalam, and the fonts load from disk instead.
 if (process.env.FONTSOURCE) {
   const f = (pkg, file) => pathToFileURL(join(process.env.FONTSOURCE, pkg, 'files', file)).href
   const face = (family, pkg, file, weight, style = 'normal') =>
     `@font-face{font-family:'${family}';src:url(${f(pkg, file)}) format('woff2');font-weight:${weight};font-style:${style}}`
   await page.addStyleTag({ content: [
-    face('Instrument Serif', 'instrument-serif', 'instrument-serif-latin-400-normal.woff2', 400),
-    face('Instrument Serif', 'instrument-serif', 'instrument-serif-latin-400-italic.woff2', 400, 'italic'),
+    ...[300, 400, 500].map(w => face('Jost', 'jost', `jost-latin-${w}-normal.woff2`, w)),
     ...[300, 400, 500, 600].map(w => face('Inter', 'inter', `inter-latin-${w}-normal.woff2`, w)),
     face('Kalam', 'kalam', 'kalam-latin-300-normal.woff2', 300),
     face('Kalam', 'kalam', 'kalam-latin-400-normal.woff2', 400),
   ].join('\n') })
 }
 await page.evaluate(async () => {
-  await Promise.all(['Instrument Serif', 'Inter', 'Kalam'].flatMap(f => [`300 16px "${f}"`, `400 16px "${f}"`, `italic 400 16px "${f}"`, `500 16px "${f}"`, `600 16px "${f}"`].map(s => document.fonts.load(s))))
+  await Promise.all(['Jost', 'Inter', 'Kalam'].flatMap(f => [`300 16px "${f}"`, `400 16px "${f}"`, `italic 400 16px "${f}"`, `500 16px "${f}"`, `600 16px "${f}"`].map(s => document.fonts.load(s))))
   await document.fonts.ready
 })
 for (const [id, name] of Object.entries(shots)) {

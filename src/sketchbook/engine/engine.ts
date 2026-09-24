@@ -1,5 +1,5 @@
 import type { BookOptions, SketchbookEvent, SketchbookPage, SketchbookProject } from '../types'
-import { grain, material, renderBinding, renderCover, rimFor } from './chrome'
+import { grain, luminance, material, renderBinding, renderCover, rimFor } from './chrome'
 import { Leaf, type Dir } from './leaf'
 import { Loupe } from './loupe'
 import { BookModel, type Face } from './model'
@@ -10,10 +10,10 @@ import { isLoaded, load, paintFace, type Geometry } from './paint'
    on this class owns the book's DOM and animates it by writing inline
    styles and CSS variables, never by re-rendering. */
 
-export type ResolvedOptions = Required<Omit<BookOptions, 'cover'>> & { cover: BookOptions['cover'] }
+export type ResolvedOptions = Required<Omit<BookOptions, 'cover' | 'bindingColor'>> & Pick<BookOptions, 'cover' | 'bindingColor'>
 
 export const defaults: ResolvedOptions = {
-  pageShape: 'portrait',
+  pageShape: 'square',
   binding: 'stitched',
   paper: '#f2ede3',
   paperTexture: 'cold-press',
@@ -39,6 +39,12 @@ export type EngineCallbacks = {
   onEvent?: (e: SketchbookEvent) => void
   onPageClick?: (opening: number, side: 'left' | 'right') => void
   onChange?: (opening: number) => void
+}
+
+export type EngineStart = {
+  /** Open straight at this opening and skip the intro (used when the book is
+   *  rebuilt with new options, so it doesn't jump back to the cover). */
+  resumeAt?: number
 }
 
 type Turn = {
@@ -98,7 +104,7 @@ export class SketchbookEngine {
   private observers: { disconnect(): void }[] = []
   private caps: { out: HTMLElement | null; in: HTMLElement | null } = { out: null, in: null }
 
-  constructor(root: HTMLElement, pages: SketchbookPage[], book: BookOptions | undefined, projects: SketchbookProject[], cb: EngineCallbacks) {
+  constructor(root: HTMLElement, pages: SketchbookPage[], book: BookOptions | undefined, projects: SketchbookProject[], cb: EngineCallbacks, start: EngineStart = {}) {
     this.o = { ...defaults, ...book }
     this.model = new BookModel(pages, !!this.o.cover)
     this.projects = projects
@@ -121,7 +127,8 @@ export class SketchbookEngine {
     this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const fromHash = this.hashOpening()
-    this.pos = fromHash ?? this.model.min
+    const resume = start.resumeAt !== undefined ? this.model.clamp(start.resumeAt) : null
+    this.pos = fromHash ?? resume ?? this.model.min
     this.applyTheme()
 
     this.loupe = new Loupe(this.p.loupe, this.p.zoomWrap, this.p.zoomInner, {
@@ -134,7 +141,7 @@ export class SketchbookEngine {
 
     this.layout()
     this.bind()
-    this.boot(fromHash !== null)
+    this.boot(fromHash !== null || resume !== null)
   }
 
   /* ------------------------------------------------------------- setup */
@@ -145,9 +152,14 @@ export class SketchbookEngine {
     r.dataset.binding = this.o.binding
     r.dataset.texture = this.o.paperTexture
     r.dataset.cover = this.o.cover ? 'yes' : 'no'
-    r.classList.toggle('skb-print', this.o.printOnPaper)
+    // printing onto dark paper would turn every image black
+    const dark = luminance(this.o.paper) < 0.35
+    r.dataset.paperTone = dark ? 'dark' : 'light'
+    r.classList.toggle('skb-print', this.o.printOnPaper && !dark)
     r.style.setProperty('--skb-paper', this.o.paper)
-    r.style.setProperty('--skb-grain', grain(this.o.paperTexture))
+    const paper = grain(this.o.paperTexture, dark)
+    r.style.setProperty('--skb-grain', paper.image)
+    r.style.setProperty('--skb-grain-size', paper.size)
     r.style.setProperty('--skb-max-h', this.o.maxHeight)
     if (this.o.cover) {
       r.style.setProperty('--skb-board', this.o.cover.color ?? '#2f3b35')
@@ -294,8 +306,7 @@ export class SketchbookEngine {
     }
 
     if (leftFace || rightFace || n === 0) {
-      const loops = Math.max(6, Math.round(this.g.height / Math.max(14, this.g.page * 0.045)))
-      b.appendChild(renderBinding(this.o.binding, loops))
+      b.appendChild(renderBinding(this.o.binding, this.g, this.o.bindingColor))
     }
     if (this.o.ribbon && (n > 0 || t)) b.appendChild(div('skb-ribbon'))
     if (leaf) b.appendChild(leaf.el)

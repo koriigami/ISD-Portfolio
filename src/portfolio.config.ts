@@ -34,64 +34,73 @@ export default defineConfig({
   },
 
   theme: {
-    background: '#e9e4da',
-    ink: '#2a2622',
-    accent: '#b86543',
-    fonts: { display: 'Instrument Serif', body: 'Inter' },
+    background: '#e6e5e1',
+    ink: '#22313a',
+    accent: '#2f6173',
+    fonts: { display: 'Jost', body: 'Inter' },
   },
 
   /* ---------------------------------------------------------------- book --
-     pageShape     'portrait' | 'square' | 'landscape'   (shape of ONE page)
-     binding       'spiral' | 'stitched' | 'glued'
-     paperTexture  'cold-press' | 'smooth' | 'kraft' | 'none'
+     Tip: run `npm run dev` and use the "Design your book" panel to try these
+     live, then press "Copy settings" and paste the result over this block.
+
+     pageShape     'square' | 'portrait' | 'landscape'   (shape of ONE page;
+                   square opens to a 2:1 spread — export spreads at 2400×1200)
+     binding       'stitched' | 'spiral' | 'wire-o' | 'coptic' | 'glued'
+     bindingColor  wire colour (spiral, wire-o) or thread colour (stitched, coptic)
+     paper         any colour; dark papers are fine
+     paperTexture  'hot-press' | 'cold-press' | 'smooth' | 'kraft' | 'dotted' | 'grid' | 'none'
+     imageFit      'contain' (show every image whole) | 'cover' (fill the page)
      cover         the closed book's cover, or false to start open
-     material      'cloth' | 'kraft' | 'leather' | 'card'                     */
+       material    'card' | 'cloth' | 'kraft' | 'leather'
+       align       'left' | 'right'   (where the title sits)
+       image       your own cover artwork, e.g. '/pages/cover.webp'           */
   book: {
-    pageShape: 'portrait',
-    binding: 'spiral',
-    paper: '#f4efe6',
-    paperTexture: 'cold-press',
+    pageShape: 'square',
+    binding: 'stitched',
+    paper: '#f6f5f1',
+    paperTexture: 'hot-press',
     printOnPaper: true,
+    imageFit: 'contain',
     cover: {
-      title: 'Portfolio',
-      subtitle: 'Your Name · 2024–26',
-      color: '#33413a',
-      ink: '#eee4cf',
-      material: 'cloth',
-      band: '#1f2622',
+      title: 'portfolio',
+      subtitle: 'Your Name · selected works 2024–26',
+      color: '#ecebe7',
+      ink: '#2f5f70',
+      material: 'card',
+      align: 'right',
     },
-    ribbon: '#9b3a2a',
+    ribbon: false,
     intro: true,
     openAt: 1,
     loupe: true,
     captions: true,
     tabs: true,
-    maxHeight: '64vh',
+    maxHeight: '62vh',
   },
 
   /* --------------------------------------------------------------- pages --
      Each entry is one OPENING of the book (what you see when it lies open).
 
      { spread: '/pages/x.webp' }                    one image across both pages
-                                                    (an exported A3/A4 landscape
-                                                    portfolio page fits exactly)
+                                                    (a 2:1 spread for a square book)
      { left: '/pages/a.webp', right: '/pages/b.webp' }   one image per page
 
      alt      describe the images (required — for screen readers and Google)
      caption  shown under the book
      project  the slug of a project below, to link them                     */
   pages: [
-    { spread: '/pages/01-title.webp', alt: 'Title page: Portfolio 2024–2026, with a sketch of an arched threshold', caption: 'Portfolio, 2024 — 2026' },
-    { spread: '/pages/02-about.webp', alt: 'About me, education, skills and software', caption: 'About' },
+    { spread: '/pages/01-title.webp', alt: 'Title page: interior design portfolio, selected works 2024–2026, with a line drawing of a chair', caption: 'Portfolio, 2024 — 2026' },
+    { spread: '/pages/02-about.webp', alt: 'About me: photo, education, experience, skills and tools', caption: 'About' },
     { spread: '/pages/03-contents.webp', alt: 'Contents: three projects', caption: 'Contents' },
-    { spread: '/pages/04-cafe-title.webp', alt: 'Courtyard Café: project brief and concept diagram', caption: 'Courtyard Café — concept', project: 'courtyard-cafe' },
-    { spread: '/pages/05-cafe-materials.webp', alt: 'Material board: lime plaster, cane, teak, terrazzo, terracotta', caption: 'Courtyard Café — materials', project: 'courtyard-cafe' },
-    { spread: '/pages/06-cafe-drawings.webp', alt: 'Ground floor plan and section through the courtyard', caption: 'Courtyard Café — plan and section', project: 'courtyard-cafe' },
+    { spread: '/pages/04-cafe-title.webp', alt: 'Courtyard Café: project brief and concept diagram of sun and breeze', caption: 'Courtyard Café — concept', project: 'courtyard-cafe' },
+    { spread: '/pages/05-cafe-layout.webp', alt: 'Bubble diagram of zones and the floor plan on a structural grid', caption: 'Courtyard Café — layout', project: 'courtyard-cafe' },
+    { spread: '/pages/06-cafe-materials.webp', alt: 'Material board: lime plaster, cane, oak, terrazzo, terracotta', caption: 'Courtyard Café — materials', project: 'courtyard-cafe' },
     { left: '/pages/07-cafe-sketch.webp', right: '/pages/07-cafe-render.webp', alt: 'Perspective sketch and render of the café interior through the arch', caption: 'Courtyard Café — through the arch', project: 'courtyard-cafe' },
-    { spread: '/pages/08-reading-room.webp', alt: 'Reading Room: project brief and axonometric', caption: 'Reading Room — axonometric', project: 'reading-room' },
+    { spread: '/pages/08-reading-room.webp', alt: 'Reading Room: project brief and a render of the shelving wall', caption: 'Reading Room', project: 'reading-room' },
     { spread: '/pages/09-reading-room-details.webp', alt: 'Shelf joinery detail and wall elevation', caption: 'Reading Room — details', project: 'reading-room' },
     { spread: '/pages/10-studies.webp', alt: 'Sketchbook studies: stairs, windows, roofs, lamps, a lounger', caption: 'Studies', project: 'studies' },
-    { spread: '/pages/11-thank-you.webp', alt: 'Thank you, with contact details', caption: 'Thank you' },
+    { spread: '/pages/11-thank-you.webp', alt: 'Thank you, with a QR code and contact details', caption: 'Thank you' },
   ],
 
   /* ------------------------------------------------------------ projects --
@@ -109,7 +118,7 @@ export default defineConfig({
         'The site was a single-storey house with a courtyard and a forty-year-old neem. The brief asked for seating for forty and a kitchen, without losing the tree.',
         'The courtyard became the room: tables sit under the canopy, a terracotta jaali filters the street, and lime-plastered walls keep the heat out. Reclaimed teak from the old doors became the counter.',
       ],
-      color: '#d7a283',
+      color: '#d9b8a6',
     },
     {
       slug: 'reading-room',
@@ -120,7 +129,7 @@ export default defineConfig({
       year: '2025',
       summary: 'A small apartment room turned into a family library, with shelves that fold into a window seat.',
       story: ['One wall does everything: shelving, a desk, and a window seat with storage under a lift-up lid. Built in 18 mm reclaimed teak with housed dado joints.'],
-      color: '#9fb0c4',
+      color: '#a9bfcc',
     },
     {
       slug: 'studies',
@@ -128,7 +137,7 @@ export default defineConfig({
       type: 'Sketchbook',
       year: '2024–26',
       summary: 'Things I stop to draw: stairs, windows, market roofs, lamps and chairs.',
-      color: '#b9c3a4',
+      color: '#c2cbb4',
     },
   ],
 })

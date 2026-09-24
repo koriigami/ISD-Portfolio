@@ -43,22 +43,30 @@ Open <http://localhost:5173>. This is your site, live on your computer. It updat
 
 ## 3. Put your work in the book
 
-1. Export your portfolio pages as images (JPG or PNG). From InDesign: *File → Export → JPEG*. From
-   Canva or Acrobat: download or export as JPG.
+1. Export your portfolio pages as images (JPG or PNG). The book has square pages, so export each
+   **two-page spread as one 2:1 image** (for example 2400×1200 px). From InDesign: *File → Export → JPEG*
+   with "Spreads" ticked. From Canva or Acrobat: download or export as JPG. Other shapes still work;
+   they show whole, with paper around them.
 2. Drop them into the `public/pages/` folder.
 3. Run `npm run images` to shrink them for the web.
 4. Open `src/portfolio.config.ts` and list your pages under `pages`:
 
 ```ts
-// one A3/A4 landscape portfolio page = one opening of the book
+// one 2:1 spread = one opening of the book
 { spread: '/pages/my-cafe-plans.webp', alt: 'Plan and section of the café', caption: 'Café: drawings', project: 'cafe' },
 
 // or a separate image on each side
 { left: '/pages/sketch.webp', right: '/pages/render.webp', alt: 'Sketch and render', caption: 'Café: interior' },
 ```
 
-In the same file, change your name, about text, email, colours, fonts and the book itself:
-binding (`spiral`, `stitched`, `glued`), paper colour and texture, cover colour, material and title.
+In the same file, change your name, about text, email, colours and fonts.
+
+**Design your book.** While `npm run dev` is running, a **Design your book** panel sits next to the
+book. Try the page shape, binding (stitched, spiral, Wire-O, Coptic, glued), wire or thread colour,
+paper colour and texture (hot-press, cold-press, kraft, dotted, grid…), cover colour, material and
+title position, ribbon and tabs. When you like it, press **Copy settings** and paste it over the
+`book: { … }` block in `src/portfolio.config.ts` (or press **Copy as AI prompt** and give it to your
+AI assistant). The panel only exists on your computer; visitors to your live site never see it.
 
 ## 4. Design your landing page with AI
 
@@ -109,6 +117,9 @@ src/sketchbook/           ← the sketchbook engine; don't edit
 ```
 
 ## For maintainers
+
+The public demo shows the Design panel because its Vercel project has the environment variable
+`VITE_SHOWCASE=true`. Students' copies don't have it, so the panel isn't even in their build.
 
 The sample pages in `public/pages/` are drawn in `scripts/samples/samples.html` and rendered with
 `NODE_PATH="$(npm root -g)" node scripts/samples/make-samples.mjs` (needs Playwright). The engine

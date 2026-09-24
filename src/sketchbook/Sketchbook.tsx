@@ -34,20 +34,27 @@ export function Sketchbook({
 
   // rebuild the engine only when the content really changes
   const key = useMemo(() => JSON.stringify([pages, book, projects]), [pages, book, projects])
+  // when new options rebuild the book, reopen it where the reader was
+  const lastKey = useRef<string | null>(null)
+  const lastOpening = useRef<number | null>(null)
+  const [run, setRun] = useState(0)
 
   useEffect(() => {
     if (!root.current) return
+    const changed = lastKey.current !== null && lastKey.current !== key
+    const resumeAt = changed && lastOpening.current !== null ? lastOpening.current : undefined
+    lastKey.current = key
     const e = new SketchbookEngine(root.current, pages, book, projects, {
       onEvent: ev => latest.current.onEvent?.(ev),
       onPageClick: (opening, side) => {
         if (latest.current.onPageClick?.(opening, side) === true) return
         setOpen({ opening, side })
       },
-    })
+    }, { resumeAt })
     engine.current = e
-    return () => { e.destroy(); engine.current = null }
+    return () => { lastOpening.current = e.current(); e.destroy(); engine.current = null }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key])
+  }, [key, run])
 
   useImperativeHandle(ref, () => ({
     goTo: n => engine.current?.goTo(n),
@@ -55,6 +62,12 @@ export function Sketchbook({
     next: () => engine.current?.step('next'),
     prev: () => engine.current?.step('prev'),
     current: () => engine.current?.current() ?? 0,
+    replayIntro: () => {
+      // a #page-n in the address would open the book straight there
+      if (/^#page-\d+$/.test(location.hash)) history.replaceState(history.state, '', location.pathname + location.search)
+      lastKey.current = null
+      setRun(r => r + 1)
+    },
   }), [])
 
   const blur = { '--skb-blur-1': `url(#${id}-b1)`, '--skb-blur-2': `url(#${id}-b2)` } as React.CSSProperties
