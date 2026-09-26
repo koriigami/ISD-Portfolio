@@ -41,7 +41,7 @@ paste that into the chat. Or describe it:
 
 ## When something breaks
 
-> `npm run build` fails with this error: ___. Fix it without touching vendor/sketchbook.
+> `npm run build` fails with this error: ___. Fix it without changing the @kagadmodyaa/sketchbook package.
 
 > The site looks broken on my phone. Check src/site for layouts that don't fit a 390px-wide screen
 > and fix them.

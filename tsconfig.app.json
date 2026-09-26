@@ -16,17 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Temporary: @kagadmodyaa/sketchbook isn't published yet, so resolve it to
-       the vendored copy. Delete this once the npm package is published. */
-    "paths": {
-      "@kagadmodyaa/sketchbook": ["./vendor/sketchbook/index.ts"]
-    },
-
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "vendor"]
+  "include": ["src"]
 }

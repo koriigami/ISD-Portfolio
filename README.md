@@ -114,11 +114,11 @@ src/portfolio.config.ts   ← your content, colours, fonts and book style
 src/site/                 ← your landing page, one file per section
 src/pages/                ← project pages
 public/pages/             ← your portfolio images
-vendor/sketchbook/        ← the sketchbook component, a copy of the @kagadmodyaa/sketchbook package; don't edit
 ```
 
 ## For maintainers
 
 The sample pages in `public/pages/` are drawn in `scripts/samples/samples.html` and rendered with
-`NODE_PATH="$(npm root -g)" node scripts/samples/make-samples.mjs` (needs Playwright). The engine
-lives in `vendor/sketchbook/` and has no dependencies beyond React. See its README.
+`NODE_PATH="$(npm root -g)" node scripts/samples/make-samples.mjs` (needs Playwright). The sketchbook
+component is the npm package [`@kagadmodyaa/sketchbook`](https://www.npmjs.com/package/@kagadmodyaa/sketchbook);
+update it with `npm i @kagadmodyaa/sketchbook@latest`.

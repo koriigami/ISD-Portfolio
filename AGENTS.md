@@ -19,14 +19,14 @@ React 19 + Vite + TypeScript, styled with Tailwind CSS v4, deployed on Vercel. R
 | `src/pages/ProjectPage.tsx` | The page for each project | Yes |
 | `src/index.css` | Global styles and Tailwind theme tokens | Yes |
 | `public/pages/` | Portfolio page images | Yes: add or replace images |
-| `vendor/sketchbook/**` | **The sketchbook component**, imported as `@kagadmodyaa/sketchbook` | **No. Never edit.** |
+| `node_modules/@kagadmodyaa/sketchbook` | **The sketchbook component**, the npm package `@kagadmodyaa/sketchbook` | **No. Never edit or copy it into `src/`.** |
 | `src/lib/*` | Config types, theme loader, Google Analytics | Only if asked |
 
 ## Rules
 
-1. **Never modify anything in `vendor/sketchbook/`.** Change the book only through the `book` block of
+1. **Never modify, copy or replace the `@kagadmodyaa/sketchbook` package.** Change the book only through the `book` block of
    `src/portfolio.config.ts` or the props of `<Sketchbook>` in `src/site/Hero.tsx`. The options are
-   documented in `vendor/sketchbook/types.ts` (read it, don't change it).
+   documented in `node_modules/@kagadmodyaa/sketchbook/dist/types.d.ts` (read it, don't change it).
 2. Keep content in `src/portfolio.config.ts`. Sections read their text from it. Don't hard-code a
    name, email or project into a component.
 3. Use the theme tokens in Tailwind classes, not hex codes: `bg-bg`, `text-ink`, `text-accent`,
